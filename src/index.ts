@@ -1,3 +1,3 @@
-import { SemiCircleProgress } from "./components/SemiCircleProgress";
+import { SemiCircleProgressWithIndicator } from "./components/SemiCircleProgressWithIndicator";
 
-export { SemiCircleProgress };
+export { SemiCircleProgressWithIndicator };

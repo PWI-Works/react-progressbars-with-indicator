@@ -15,12 +15,12 @@ npm install react-semicircle-progressbar
 
 ```javascript
 import React from 'react';
-import SemiCircleProgress from 'react-semicircle-progressbar';
+import SemiCircleProgressWithIndicator from 'react-semicircle-progressbar';
 
 function App() {
   return (
     <div>
-      <SemiCircleProgress
+      <SemiCircleProgressWithIndicator
         percentage={80}
         size={{
           width: 200,
