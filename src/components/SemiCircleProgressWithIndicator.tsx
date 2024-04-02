@@ -1,4 +1,4 @@
-type ISemiCircleProgress = {
+export type ISemiCircleProgressWithIndicator = {
   strokeWidth: number;
   strokeLinecap?: "butt" | "round" | "square" | "inherit";
 
@@ -32,7 +32,7 @@ const SemiCircleProgressWithIndicator = ({
                                            fontStyle,
                                            hasBackground = false,
                                            bgStrokeColor,
-                                         }: ISemiCircleProgress) => {
+                                         }: ISemiCircleProgressWithIndicator) => {
   if (percentage < 0 || percentage > 100) {
     throw new Error("Percentage must be between 0 and 100");
   }
