@@ -3,12 +3,14 @@ type ISemiCircleProgress = {
   strokeLinecap?: "butt" | "round" | "square" | "inherit";
 
   percentage: number;
-  percentageSeperator?: string;
+  indicatorPercentage: number;
+  percentageSeparator?: string;
   size: {
     width: number;
     height: number;
   };
   strokeColor?: string;
+  indicatorColor?: string;
   fontStyle?: {
     fontSize: string;
     fontFamily?: string;
@@ -22,10 +24,11 @@ type ISemiCircleProgress = {
 const SemiCircleProgressWithIndicator = ({
                                            strokeWidth,
                                            percentage,
+                                           indicatorPercentage,
                                            strokeColor,
                                            size,
                                            strokeLinecap,
-                                           percentageSeperator,
+                                           percentageSeparator,
                                            fontStyle,
                                            hasBackground = false,
                                            bgStrokeColor,
@@ -52,6 +55,7 @@ const SemiCircleProgressWithIndicator = ({
   const strokeDashoffset = circumference - (percentage / 100) * circumference;
   const bgStrokeDashoffset = circumference - 1 * circumference;
   const pathDescription = "M5,64 a1,1 0 0,1 90,0";
+  const indicatorPathDescription = "M11.268 0.999999C12.0378 -0.333335 13.9623 -0.333333 14.7321 1L25.1244 19C25.8942 20.3333 24.9319 22 23.3923 22L2.60769 22C1.06809 22 0.105844 20.3333 0.875645 19L11.268 0.999999Z";
 
   return (
     <svg
@@ -94,6 +98,11 @@ const SemiCircleProgressWithIndicator = ({
         }}
         fill="none"
       />
+
+      <path
+        d={indicatorPathDescription}
+        fill="white"/>
+
       <animate
         attributeName="stroke-dashoffset"
         from="283"
@@ -115,7 +124,7 @@ const SemiCircleProgressWithIndicator = ({
         }}
       >
         {percentage}
-        {percentageSeperator || "%"}
+        {percentageSeparator || "%"}
       </text>
     </svg>
   );

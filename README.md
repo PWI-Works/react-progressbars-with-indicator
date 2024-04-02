@@ -1,21 +1,22 @@
-# react-semicircle-progressbar
+# react-semicircle-progressbar-with-indicator
 
 A semicircle progress bar for React applications.
+Forked from [react-semicircle-progressbar](https://github.com/4emcos/react-semicircle-progressbar)
 
 ![alt text](https://raw.githubusercontent.com/4emcos/react-semicircle-progressbar/main/assets/example.jpg)
 
 ## Installation
 
-Use the package manager [npm](https://www.npmjs.com/) to install react-semicircle-progressbar.
+Use the package manager [npm](https://www.npmjs.com/) to install react-semicircle-progressbar-with-indicator.
 
 ```bash
-npm install react-semicircle-progressbar
+npm install react-semicircle-progressbar-with-indicator
 ```
 ## Usage
 
 ```javascript
 import React from 'react';
-import SemiCircleProgressWithIndicator from 'react-semicircle-progressbar';
+import SemiCircleProgressWithIndicator from 'react-semicircle-progressbar-with-indicator';
 
 function App() {
   return (
@@ -39,17 +40,18 @@ export default App;
 
 ## Props
 
-| Property           | Type                                    | Description                                                                                       |
-| ------------------ | --------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| strokeWidth        | number                                  | The width of the progress bar line in pixels                                                       |
-| strokeLinecap      | "butt" &#124; "round" &#124; "square"   | The type of end cap for the progress bar line ("butt", "round", or "square")                      |
-| percentage         | number                                  | The percentage of the progress bar filled                                                          |
-| percentageSeperator| string                                  | The separator to use between the percentage and label text (default is "of")                     |
-| size               | { width: number, height: number }       | The size of the progress bar in pixels                                                             |
-| strokeColor        | string                                  | The color of the progress bar line in CSS                                                           |
-| fontStyle          | { fontSize: string, fontFamily: string, fontWeight: string, fill: string } | The style of the label text |
-|hasBackground       | boolean                                  | The background of the progress bar                                                                |
-|bgStrokeColor       | string                                   | The color of the progress bar background line in CSS                                           |
+| Property            | Type                                                                       | Description                                                                  |
+|---------------------|----------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| strokeWidth         | number                                                                     | The width of the progress bar line in pixels                                 |
+| strokeLinecap       | "butt" &#124; "round" &#124; "square"                                      | The type of end cap for the progress bar line ("butt", "round", or "square") |
+| percentage          | number                                                                     | The percentage of the progress bar filled                                    |
+| indicatorPercentage | number                                                                     | The position of the indicator along the progress bar                         |
+| percentageSeparator | string                                                                     | The separator to use between the percentage and label text (default is "of") |
+| size                | { width: number, height: number }                                          | The size of the progress bar in pixels                                       |
+| strokeColor         | string                                                                     | The color of the progress bar line in CSS                                    |
+| fontStyle           | { fontSize: string, fontFamily: string, fontWeight: string, fill: string } | The style of the label text                                                  |
+| hasBackground       | boolean                                                                    | The background of the progress bar                                           |
+| bgStrokeColor       | string                                                                     | The color of the progress bar background line in CSS                         |
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
