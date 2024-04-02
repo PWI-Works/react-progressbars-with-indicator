@@ -14,4 +14,4 @@ node_modules
 # Editor directories and files
 .vscode/*
 package-lock.json
-.idea
+.idea/*
