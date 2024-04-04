@@ -11,13 +11,14 @@ export type ISemiCircleProgressWithIndicator = {
   };
   strokeColor?: string;
   indicatorColor?: string;
+  includeText?: boolean;
   fontStyle?: {
     fontSize: string;
     fontFamily?: string;
     fontWeight: string;
     fill: string;
   };
-  hasBackground?: Boolean;
+  hasBackground?: boolean;
   bgStrokeColor?: string;
 };
 
@@ -26,13 +27,18 @@ const SemiCircleProgressWithIndicator = ({
                                            percentage,
                                            indicatorPercentage,
                                            strokeColor,
+                                           indicatorColor,
                                            size,
                                            strokeLinecap,
                                            percentageSeparator,
+                                           includeText = false,
                                            fontStyle,
                                            hasBackground = false,
                                            bgStrokeColor,
                                          }: ISemiCircleProgressWithIndicator) => {
+  const defaultStrokeColor = "#04001b";
+  const defaultBackgroundColor = "#d3d3d3";
+
   if (percentage < 0 || percentage > 100) {
     throw new Error("Percentage must be between 0 and 100");
   }
@@ -55,7 +61,7 @@ const SemiCircleProgressWithIndicator = ({
   const strokeDashoffset = circumference - (percentage / 100) * circumference;
   const bgStrokeDashoffset = circumference - 1 * circumference;
   const pathDescription = "M5,64 a1,1 0 0,1 90,0";
-  const indicatorPathDescription = "M11.268 0.999999C12.0378 -0.333335 13.9623 -0.333333 14.7321 1L25.1244 19C25.8942 20.3333 24.9319 22 23.3923 22L2.60769 22C1.06809 22 0.105844 20.3333 0.875645 19L11.268 0.999999Z";
+  const indicatorPathDescription = "M11.268 0.999999C12.0378 -0.333335 13.9623-0.333333 14.7321 1L25.1244 19C25.8942 20.3333 24.9319 22 23.3923 22L2.60769 22C1.06809 22 0.105844 20.3333 0.875645 19L11.268 0.999999Z";
 
   return (
     <svg
@@ -74,7 +80,7 @@ const SemiCircleProgressWithIndicator = ({
           d={pathDescription}
           style={{
             transition: "stroke-dashoffset 0.35s",
-            stroke: bgStrokeColor || "#d3d3d3",
+            stroke: bgStrokeColor || defaultBackgroundColor,
             strokeLinecap: strokeLinecap || "round",
             strokeDasharray: `${circumference}`,
             strokeDashoffset: `${bgStrokeDashoffset}`,
@@ -90,7 +96,7 @@ const SemiCircleProgressWithIndicator = ({
         d={pathDescription}
         style={{
           transition: "stroke-dashoffset 0.35s",
-          stroke: strokeColor || "#04001b",
+          stroke: strokeColor || defaultStrokeColor,
           strokeLinecap: strokeLinecap || "round",
           strokeDasharray: `${circumference}`,
           strokeDashoffset: `${strokeDashoffset}`,
@@ -101,7 +107,7 @@ const SemiCircleProgressWithIndicator = ({
 
       <path
         d={indicatorPathDescription}
-        fill="white"/>
+        fill={indicatorColor || defaultStrokeColor}/>
 
       <animate
         attributeName="stroke-dashoffset"
@@ -111,21 +117,21 @@ const SemiCircleProgressWithIndicator = ({
         fill="freeze"
       />
 
-      <text
-        x="52%"
-        y="60%"
-        dominantBaseline="middle"
-        textAnchor="middle"
-        fontSize="20"
-        fontFamily="Arial"
-        fill="#04001b"
-        style={{
-          ...fontStyle,
-        }}
+      {includeText && <text
+          x="52%"
+          y="60%"
+          dominantBaseline="middle"
+          textAnchor="middle"
+          fontSize="20"
+          fontFamily="Arial"
+          fill="#04001b"
+          style={{
+            ...fontStyle,
+          }}
       >
         {percentage}
         {percentageSeparator || "%"}
-      </text>
+      </text>}
     </svg>
   );
 };
