@@ -1,9 +1,8 @@
 export type ISemiCircleProgressWithIndicator = {
   strokeWidth: number;
   strokeLinecap?: "butt" | "round" | "square" | "inherit";
-
   percentage: number;
-  indicatorPercentage: number;
+  indicatorPercentage?: number;
   percentageSeparator?: string;
   size: {
     width: number;
@@ -105,9 +104,9 @@ const SemiCircleProgressWithIndicator = ({
         fill="none"
       />
 
-      <path
+      {indicatorPercentage && <path
         d={indicatorPathDescription}
-        fill={indicatorColor || defaultStrokeColor}/>
+        fill={indicatorColor || defaultStrokeColor}/>}
 
       <animate
         attributeName="stroke-dashoffset"
