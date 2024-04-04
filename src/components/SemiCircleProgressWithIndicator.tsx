@@ -65,20 +65,25 @@ export const SemiCircleProgressWithIndicator = ({
   const bgStrokeDashoffset = 0;
   const pathStartX = 5;
   const pathStartY = 64;
-  const pathEndX = 90;
-  const pathDescription = `M${pathStartX},${pathStartY} a1,1 0 0,1 ${pathEndX},0`;
+  const pathRadius = 90;
+  const pathCenterX = pathStartX + pathRadius / 2;
+  const pathDescription = `M${pathStartX},${pathStartY} a1,1 0 0,1 ${pathRadius},0`;
 
 
-  // Calculate the translation values
+  // Calculate the position of the indicator
   const indicatorSize = strokeWidth * (indicatorRelativeSize || 0.6);
   const strokeIndicatorGap = 1;
   const translateX = pathStartX - strokeWidth / 2 - strokeIndicatorGap;
   const translateY = -indicatorSize / 2 + 64;
+  const indicatorRotationAngle = 90;
 
   // Wrap the Indicator component in a g and apply the transform attribute
   const indicator = (
-    <g transform={`translate(${translateX}, ${translateY}) rotate(90)`}>
-      <Indicator size={indicatorSize} color={indicatorColor}/>
+    <g
+      /*transform={`translate(${pathCenterX}, ${pathStartY}) rotate(${indicatorRotationAngle}) translate(-${pathCenterX}, -${pathStartY})`}*/>
+      <g transform={`translate(${pathCenterX + indicatorSize/2}, ${pathStartY - indicatorSize/2}) rotate(90)`}>
+        <Indicator size={indicatorSize} color={indicatorColor}/>
+      </g>
     </g>
   );
 
@@ -127,6 +132,14 @@ export const SemiCircleProgressWithIndicator = ({
         dur="1s"
         fill="freeze"
       />
+      <circle
+        cx={pathCenterX}
+        cy={pathStartY}
+        r="0.5"
+        fill={strokeColor || defaultStrokeColor}
+        stroke={strokeColor || defaultStrokeColor}
+        strokeWidth="1"
+        />
 
       {includeText && <text
           x="52%"
