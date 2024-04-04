@@ -21,7 +21,7 @@ export type ISemiCircleProgressWithIndicator = {
   bgStrokeColor?: string;
 };
 
-const SemiCircleProgressWithIndicator = ({
+export const SemiCircleProgressWithIndicator = ({
                                            strokeWidth,
                                            percentage,
                                            indicatorPercentage,
@@ -134,4 +134,3 @@ const SemiCircleProgressWithIndicator = ({
     </svg>
   );
 };
-export {SemiCircleProgressWithIndicator};
