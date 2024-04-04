@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import { SemiCircleProgressWithIndicator, ISemiCircleProgressWithIndicator } from '~/components/SemiCircleProgressWithIndicator';
 
 export default {
