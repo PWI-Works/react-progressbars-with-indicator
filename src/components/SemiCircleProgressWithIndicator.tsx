@@ -1,3 +1,5 @@
+import {Indicator} from "~/components/Indicator";
+
 export type ISemiCircleProgressWithIndicator = {
   strokeWidth: number;
   strokeLinecap?: "butt" | "round" | "square" | "inherit";
@@ -10,6 +12,7 @@ export type ISemiCircleProgressWithIndicator = {
   };
   strokeColor?: string;
   indicatorColor?: string;
+  indicatorRelativeSize: number;
   includeText?: boolean;
   fontStyle?: {
     fontSize: string;
@@ -22,19 +25,20 @@ export type ISemiCircleProgressWithIndicator = {
 };
 
 export const SemiCircleProgressWithIndicator = ({
-                                           strokeWidth,
-                                           percentage,
-                                           indicatorPercentage,
-                                           strokeColor,
-                                           indicatorColor,
-                                           size,
-                                           strokeLinecap,
-                                           percentageSeparator,
-                                           includeText = false,
-                                           fontStyle,
-                                           hasBackground = false,
-                                           bgStrokeColor,
-                                         }: ISemiCircleProgressWithIndicator) => {
+                                                  strokeWidth,
+                                                  percentage,
+                                                  indicatorPercentage,
+                                                  strokeColor,
+                                                  indicatorColor,
+                                                  size,
+                                                  indicatorRelativeSize,
+                                                  strokeLinecap,
+                                                  percentageSeparator,
+                                                  includeText = false,
+                                                  fontStyle,
+                                                  hasBackground = false,
+                                                  bgStrokeColor,
+                                                }: ISemiCircleProgressWithIndicator) => {
   const defaultStrokeColor = "#04001b";
   const defaultBackgroundColor = "#d3d3d3";
 
@@ -58,9 +62,25 @@ export const SemiCircleProgressWithIndicator = ({
   const radius = 50 - strokeWidth / 2;
   const circumference = 1.1 * Math.PI * radius;
   const strokeDashoffset = circumference - (percentage / 100) * circumference;
-  const bgStrokeDashoffset = circumference - 1 * circumference;
-  const pathDescription = "M5,64 a1,1 0 0,1 90,0";
-  const indicatorPathDescription = "M11.268 0.999999C12.0378 -0.333335 13.9623-0.333333 14.7321 1L25.1244 19C25.8942 20.3333 24.9319 22 23.3923 22L2.60769 22C1.06809 22 0.105844 20.3333 0.875645 19L11.268 0.999999Z";
+  const bgStrokeDashoffset = 0;
+  const pathStartX = 5;
+  const pathStartY = 64;
+  const pathEndX = 90;
+  const pathDescription = `M${pathStartX},${pathStartY} a1,1 0 0,1 ${pathEndX},0`;
+
+
+  // Calculate the translation values
+  const indicatorSize = strokeWidth * (indicatorRelativeSize || 0.6);
+  const strokeIndicatorGap = 1;
+  const translateX = pathStartX - strokeWidth / 2 - strokeIndicatorGap;
+  const translateY = -indicatorSize / 2 + 64;
+
+  // Wrap the Indicator component in a g and apply the transform attribute
+  const indicator = (
+    <g transform={`translate(${translateX}, ${translateY}) rotate(90)`}>
+      <Indicator size={indicatorSize} color={indicatorColor}/>
+    </g>
+  );
 
   return (
     <svg
@@ -73,9 +93,6 @@ export const SemiCircleProgressWithIndicator = ({
     >
       {hasBackground && (
         <path
-          cx="45"
-          cy="45"
-          r="32"
           d={pathDescription}
           style={{
             transition: "stroke-dashoffset 0.35s",
@@ -89,9 +106,6 @@ export const SemiCircleProgressWithIndicator = ({
         />
       )}
       <path
-        cx="45"
-        cy="45"
-        r="32"
         d={pathDescription}
         style={{
           transition: "stroke-dashoffset 0.35s",
@@ -104,9 +118,7 @@ export const SemiCircleProgressWithIndicator = ({
         fill="none"
       />
 
-      {indicatorPercentage && <path
-        d={indicatorPathDescription}
-        fill={indicatorColor || defaultStrokeColor}/>}
+      {indicatorPercentage && indicator}
 
       <animate
         attributeName="stroke-dashoffset"

@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { SemiCircleProgressWithIndicator, ISemiCircleProgressWithIndicator } from '~/components/SemiCircleProgressWithIndicator';
 
 export default {
@@ -6,7 +6,7 @@ export default {
   component: SemiCircleProgressWithIndicator,
 } as Meta;
 
-const Template: Story<ISemiCircleProgressWithIndicator> = (args: ISemiCircleProgressWithIndicator) => <SemiCircleProgressWithIndicator {...args} />;
+const Template: StoryFn<ISemiCircleProgressWithIndicator> = (args: ISemiCircleProgressWithIndicator) => <SemiCircleProgressWithIndicator {...args} />;
 
 export const Primary = Template.bind({});
 
@@ -18,6 +18,7 @@ Primary.args = {
   includeText: false,
   strokeColor: "#04001b",
   indicatorColor: "#03C04A",
+  indicatorRelativeSize: 1.0,
   hasBackground: true,
   bgStrokeColor: '#d3d3d3',
 };
