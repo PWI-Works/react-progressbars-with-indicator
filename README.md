@@ -12,6 +12,7 @@ Use the package manager [npm](https://www.npmjs.com/) to install react-semicircl
 ```bash
 npm install react-semicircle-progressbar-with-indicator
 ```
+
 ## Usage
 
 ```javascript
@@ -23,12 +24,14 @@ function App() {
     <div>
       <SemiCircleProgressWithIndicator
         percentage={80}
+        indicatorPercentage={50}
         size={{
           width: 200,
           height: 200,
         }}
         strokeWidth={10}
         strokeColor="#f00"
+        indicatorColor="#f00"
       />
     </div>
   );
