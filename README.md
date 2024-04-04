@@ -52,6 +52,8 @@ export default App;
 | percentageSeparator | string                                                                     | The separator to use between the percentage and label text (default is "of") |
 | size                | { width: number, height: number }                                          | The size of the progress bar in pixels                                       |
 | strokeColor         | string                                                                     | The color of the progress bar line in CSS                                    |
+| indicatorColor      | string                                                                     | The color of the indicator in CSS                                            |
+| includeText         | boolean                                                                    | The text indicating percentage complete of the progress bar                  |
 | fontStyle           | { fontSize: string, fontFamily: string, fontWeight: string, fill: string } | The style of the label text                                                  |
 | hasBackground       | boolean                                                                    | The background of the progress bar                                           |
 | bgStrokeColor       | string                                                                     | The color of the progress bar background line in CSS                         |
