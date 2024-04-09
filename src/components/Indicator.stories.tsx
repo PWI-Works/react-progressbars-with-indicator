@@ -11,6 +11,7 @@ const Template: StoryFn<IIndicator> = (args: IIndicator) => <Indicator {...args}
 export const Primary = Template.bind({});
 
 Primary.args = {
-  size: 100,
+  width: 100,
   color: "#03C04A",
+  style: 'equilateral',
 };

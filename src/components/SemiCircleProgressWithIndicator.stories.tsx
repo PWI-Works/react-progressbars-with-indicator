@@ -13,12 +13,12 @@ export const Primary = Template.bind({});
 Primary.args = {
   strokeWidth: 10,
   percentage: 60,
-  indicatorPercentage: 20,
-  size: { width: 600, height: 500 },
+  indicatorPercentage: undefined,
+  size: { width: 650, height: 500 },
   includeText: false,
   strokeColor: "#04001b",
   indicatorColor: "#03C04A",
-  indicatorRelativeSize: 1.0,
+  indicatorRelativeSize: 0.6,
   hasBackground: true,
   bgStrokeColor: '#d3d3d3',
 };

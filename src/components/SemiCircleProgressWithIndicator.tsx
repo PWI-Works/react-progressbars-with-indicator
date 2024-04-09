@@ -46,6 +46,10 @@ export const SemiCircleProgressWithIndicator = ({
     throw new Error("Percentage must be between 0 and 100");
   }
 
+  if (indicatorPercentage != undefined && (indicatorPercentage < 0 || indicatorPercentage > 100)) {
+    throw new Error("Indicator percentage must be between 0 and 100");
+  }
+
   if (isNaN(strokeWidth) || strokeWidth <= 0) {
     throw new Error("Stroke width must be a positive number");
   }
@@ -65,24 +69,26 @@ export const SemiCircleProgressWithIndicator = ({
   const bgStrokeDashoffset = 0;
   const pathStartX = 5;
   const pathStartY = 64;
-  const pathRadius = 90;
-  const pathCenterX = pathStartX + pathRadius / 2;
-  const pathDescription = `M${pathStartX},${pathStartY} a1,1 0 0,1 ${pathRadius},0`;
+  const pathDiameter = 90;
+  const pathCenterX = pathStartX + pathDiameter / 2;
+  const pathDescription = `M${pathStartX},${pathStartY} a1,1 0 0,1 ${pathDiameter},0`;
 
 
   // Calculate the position of the indicator
-  const indicatorSize = strokeWidth * (indicatorRelativeSize || 0.6);
+  const indicatorWidth = strokeWidth * (indicatorRelativeSize || 0.6);
+  const indicatorStyle = 'equilateral';
   const strokeIndicatorGap = 1;
-  const translateX = pathStartX - strokeWidth / 2 - strokeIndicatorGap;
-  const translateY = -indicatorSize / 2 + 64;
-  const indicatorRotationAngle = 90;
+  const translateX = pathDiameter/2 + strokeWidth/2 + strokeIndicatorGap;
+  const indicatorRotationAngle = (indicatorPercentage || 0) / 100 * 180;
 
+
+  const indicator = (<Indicator width={indicatorWidth} color={indicatorColor} style={indicatorStyle}/>);
   // Wrap the Indicator component in a g and apply the transform attribute
-  const indicator = (
+  const placedIndicator = (
     <g
-      /*transform={`translate(${pathCenterX}, ${pathStartY}) rotate(${indicatorRotationAngle}) translate(-${pathCenterX}, -${pathStartY})`}*/>
-      <g transform={`translate(${pathCenterX + indicatorSize/2}, ${pathStartY - indicatorSize/2}) rotate(90)`}>
-        <Indicator size={indicatorSize} color={indicatorColor}/>
+      transform={`rotate(${indicatorRotationAngle}, ${pathCenterX}, ${pathStartY}) translate(-${translateX})`}> {/*rotate the indicator and move outside the arc*/}
+      <g transform={`translate(${pathCenterX}, ${pathStartY - indicatorWidth/2}) rotate(90)`}> {/*set start position of indicator to point at dead center*/}
+        {indicator}
       </g>
     </g>
   );
@@ -123,7 +129,7 @@ export const SemiCircleProgressWithIndicator = ({
         fill="none"
       />
 
-      {indicatorPercentage && indicator}
+      {indicatorPercentage !== undefined && placedIndicator}
 
       <animate
         attributeName="stroke-dashoffset"
@@ -132,14 +138,6 @@ export const SemiCircleProgressWithIndicator = ({
         dur="1s"
         fill="freeze"
       />
-      <circle
-        cx={pathCenterX}
-        cy={pathStartY}
-        r="0.5"
-        fill={strokeColor || defaultStrokeColor}
-        stroke={strokeColor || defaultStrokeColor}
-        strokeWidth="1"
-        />
 
       {includeText && <text
           x="52%"
