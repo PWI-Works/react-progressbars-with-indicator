@@ -14,7 +14,7 @@ Primary.args = {
   strokeWidth: 10,
   percentage: 60,
   indicatorPercentage: 20,
-  size: { width: 300, height: 200 },
+  size: { width: 600, height: 500 },
   includeText: false,
   strokeColor: "#04001b",
   indicatorColor: "#03C04A",
