@@ -1,15 +1,16 @@
 export type IIndicator = {
   width: number,
   color?: string,
-  style?: 'equilateral' | 'square'
+  style?: 'equilateral' | 'fill-square'
+  cornerRadius?: number,
 }
 
-export const Indicator = ({width, color, style}: IIndicator) => {
+export const Indicator = ({width, color, style, cornerRadius}: IIndicator) => {
 
   const defaultColor = "#04001b";
-  const strokeWidth = Math.floor(width/3);
+  const strokeWidth = cornerRadius ? cornerRadius * 2 : width/3;
   //defaults to fill if equilateral is not specified
-  const triangleHeight = style == 'equilateral' ? Math.tan(60 * Math.PI / 180) * ((width - strokeWidth) / 2) : width-strokeWidth;
+  const triangleHeight = style == 'fill-square' ? width-strokeWidth : Math.tan(60 * Math.PI / 180) * ((width - strokeWidth) / 2);
   const height = triangleHeight + strokeWidth;
   const indicatorPathDescription = `M${strokeWidth / 2},${triangleHeight + strokeWidth / 2} ` + // start at the bottom left corner
     `L${width / 2},${strokeWidth / 2} ` + // move to top center

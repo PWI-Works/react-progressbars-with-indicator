@@ -14,4 +14,5 @@ Primary.args = {
   width: 100,
   color: "#03C04A",
   style: 'equilateral',
+  cornerRadius: 10,
 };
