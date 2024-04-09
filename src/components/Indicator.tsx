@@ -7,6 +7,10 @@ export type IIndicator = {
 
 export const Indicator = ({width, color, style, cornerRadius}: IIndicator) => {
 
+  if (cornerRadius != undefined && (cornerRadius <= 0 || cornerRadius > width / 3)) {
+    throw new Error("Corner radius must be a positive number and less than one third the width");
+  }
+
   const defaultColor = "#04001b";
   const strokeWidth = cornerRadius ? cornerRadius * 2 : width/3;
   //defaults to fill if equilateral is not specified
