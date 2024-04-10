@@ -7,13 +7,16 @@ export type IIndicator = {
 
 export const Indicator = ({width, color, style, cornerRadius}: IIndicator) => {
 
+  if (isNaN(width) || width <= 0) {
+    throw new Error("Width must be a positive number");
+  }
   if (cornerRadius != undefined && (cornerRadius <= 0 || cornerRadius > width / 3)) {
     throw new Error("Corner radius must be a positive number and less than one third the width");
   }
 
   const defaultColor = "#04001b";
   const strokeWidth = cornerRadius ? cornerRadius * 2 : width/3;
-  //defaults to fill if equilateral is not specified
+  //defaults to fill-square if equilateral is not specified
   const triangleHeight = style == 'fill-square' ? width-strokeWidth : Math.tan(60 * Math.PI / 180) * ((width - strokeWidth) / 2);
   const height = triangleHeight + strokeWidth;
   const indicatorPathDescription = `M${strokeWidth / 2},${triangleHeight + strokeWidth / 2} ` + // start at the bottom left corner

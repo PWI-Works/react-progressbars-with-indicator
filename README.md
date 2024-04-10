@@ -3,7 +3,7 @@
 A semicircle progress bar for React applications.
 Forked from [react-semicircle-progressbar](https://github.com/4emcos/react-semicircle-progressbar)
 
-![alt text](https://raw.githubusercontent.com/4emcos/react-semicircle-progressbar/main/assets/example.jpg)
+![alt text](/assets/example.png)
 
 ## Installation
 
