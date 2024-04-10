@@ -36,7 +36,7 @@ export const SemiCircleProgressWithIndicator = ({
                                                   percentageSeparator,
                                                   includeText = false,
                                                   fontStyle,
-                                                  hasBackground = false,
+                                                  hasBackground = true,
                                                   bgStrokeColor,
                                                 }: ISemiCircleProgressWithIndicator) => {
   const defaultStrokeColor = "#04001b";
