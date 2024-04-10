@@ -1,21 +1,21 @@
-type ISemiCircleProgress = {
+export type ISemiCircleProgressWithIndicator = {
     strokeWidth: number;
     strokeLinecap?: "butt" | "round" | "square" | "inherit";
     percentage: number;
+    indicatorPercentage?: number;
     percentageSeparator?: string;
-    size: {
-        width: number;
-        height: number;
-    };
+    width?: number;
     strokeColor?: string;
+    indicatorColor?: string;
+    indicatorRelativeSize: number;
+    includeText?: boolean;
     fontStyle?: {
         fontSize: string;
         fontFamily?: string;
         fontWeight: string;
         fill: string;
     };
-    hasBackground?: Boolean;
+    hasBackground?: boolean;
     bgStrokeColor?: string;
 };
-declare const SemiCircleProgressWithIndicator: ({ strokeWidth, percentage, indicatorPercentage, strokeColor, size, strokeLinecap, percentageSeparator, fontStyle, hasBackground, bgStrokeColor, }: ISemiCircleProgress) => JSX.Element;
-export { SemiCircleProgressWithIndicator };
+export declare const SemiCircleProgressWithIndicator: ({ strokeWidth, percentage, indicatorPercentage, strokeColor, indicatorColor, width, indicatorRelativeSize, strokeLinecap, percentageSeparator, includeText, fontStyle, hasBackground, bgStrokeColor, }: ISemiCircleProgressWithIndicator) => import("react/jsx-runtime").JSX.Element;
