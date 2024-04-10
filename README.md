@@ -47,7 +47,7 @@ export default App;
 | Property            | Type                                                                       | Description                                                                       |
 |---------------------|----------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
 | strokeWidth         | number                                                                     | The width of the progress bar line in pixels                                      |
-| strokeLinecap       | "butt" &#124; "round" &#124; "square"             | The type of end cap for the progress bar line ("butt", "round", or "square")      |
+| strokeLinecap       | "butt" &#124; "round" &#124; "square"                                      | The type of end cap for the progress bar line ("butt", "round", or "square")      |
 | percentage          | number                                                                     | The percentage of the progress bar filled                                         |
 | indicatorPercentage | number                                                                     | The position of the indicator along the progress bar (null value hides indicator) |
 | percentageSeparator | string                                                                     | The separator to use between the percentage and label text (default is "of")      |

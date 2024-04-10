@@ -2,7 +2,7 @@ import {Indicator} from "~/components/Indicator";
 
 export type ISemiCircleProgressWithIndicator = {
   strokeWidth: number;
-  strokeLinecap?: "butt" | "round" | "square" | "inherit" | "rounded-square";
+  strokeLinecap?: "butt" | "round" | "square" | "inherit";
   percentage: number;
   indicatorPercentage?: number;
   percentageSeparator?: string;
@@ -94,8 +94,6 @@ export const SemiCircleProgressWithIndicator = ({
     </g>
   );
 
-
-
   return (
     <svg
       width={size.width}
@@ -105,7 +103,7 @@ export const SemiCircleProgressWithIndicator = ({
       xmlns="http://www.w3.org/2000/svg"
       className="_half-circular-progress"
     >
-      {hasBackground && (strokeLinecap !== 'rounded-square' ?
+      {hasBackground && (
         <path
           d={pathDescription}
           style={{
@@ -117,10 +115,9 @@ export const SemiCircleProgressWithIndicator = ({
             strokeWidth: `${strokeWidth}`,
           }}
           fill="none"
-        /> : ''
+        />
       )}
-
-      {strokeLinecap !== 'rounded-square' ? <path
+      <path
         d={pathDescription}
         style={{
           transition: "stroke-dashoffset 0.35s",
@@ -131,8 +128,7 @@ export const SemiCircleProgressWithIndicator = ({
           strokeWidth: `${strokeWidth}`,
         }}
         fill="none"
-      /> : ''
-      }
+      />
 
       {indicatorPercentage !== undefined && placedIndicator}
 
