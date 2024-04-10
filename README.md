@@ -71,29 +71,7 @@ function App() {
 export default App;
 ```
 
-### Indicator
-
-```javascript
-import React from 'react';
-import SemiCircleProgressWithIndicator from 'react-progressbars-with-indicator';
-
-function App() {
-  return (
-      <div>
-        <Indicator
-            width={100}
-            color={'f00'}
-            style={'equilateral'}
-            cornerRadius={20}
-        />
-      </div>
-  );
-}
-
-export default App;
-```
-
-## Props
+## Properties
 
 ### SemiCircleProgressWithIndicator
 
@@ -130,15 +108,6 @@ export default App;
 | fontStyle             | { fontFamily: string, fontWeight: string, fill: string } | The style of the label text                                                       |
 | hasBackground         | boolean                                                  | The background of the progress bar                                                |
 | bgStrokeColor         | string                                                   | The color of the progress bar background line in CSS                              |
-
-### Indicator
-
-| Property     | Type                               | Description                                                                                                                                              |
-|--------------|------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| width        | number                             | The width of the indicator in pixels                                                                                                                     |
-| color        | string                             | The color of the indicator in hex                                                                                                                        |
-| style        | "equilateral" &#124; "fill-square" | The style of the indicator - equilateral produces an equilateral triangle; fill-square produces an isosceles triangle where the height matches the width |
-| cornerRadius | number                             | The corner radius of the indicator                                                                                                                       |
 
 ## Testing (development only)
 
