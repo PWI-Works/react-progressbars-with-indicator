@@ -6,7 +6,7 @@ export type ISemiCircleProgressWithIndicator = {
   percentage: number;
   indicatorPercentage?: number;
   percentageSeparator?: string;
-  width: number;
+  width?: number;
   strokeColor?: string;
   indicatorColor?: string;
   indicatorRelativeSize: number;
@@ -27,7 +27,7 @@ export const SemiCircleProgressWithIndicator = ({
                                                   indicatorPercentage,
                                                   strokeColor,
                                                   indicatorColor,
-                                                  width,
+                                                  width = 100,
                                                   indicatorRelativeSize,
                                                   strokeLinecap,
                                                   percentageSeparator,
@@ -67,7 +67,7 @@ export const SemiCircleProgressWithIndicator = ({
   const strokeDashoffset = circumference - (percentage / 100) * circumference;
   const bgStrokeDashoffset = 0;
   const pathStartX = strokeWidth / 2 + indicatorOffset;
-  const pathBottomY = radius + strokeWidth / 2;
+  const pathBottomY = radius + strokeWidth / 2 + indicatorOffset;
   const pathCenterX = pathStartX + pathDiameter / 2;
   const pathDescription = `M${pathStartX},${pathBottomY} a1,1 0 0,1 ${pathDiameter},0`;
 

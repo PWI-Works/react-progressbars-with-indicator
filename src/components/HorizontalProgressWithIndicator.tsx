@@ -5,7 +5,7 @@ export type IHorizontalProgressWithIndicator = {
   strokeLinecap?: "butt" | "round" | "square" | "inherit";
   percentage: number;
   indicatorPercentage?: number;
-  width: number;
+  width?: number;
   strokeColor?: string;
   indicatorColor?: string;
   indicatorRelativeSize: number;
@@ -25,7 +25,7 @@ export const HorizontalProgressWithIndicator = ({
                                                   strokeLinecap = 'round',
                                                   percentage,
                                                   indicatorPercentage,
-                                                  width,
+                                                  width = 100,
                                                   strokeColor,
                                                   indicatorColor,
                                                   indicatorRelativeSize,
