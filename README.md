@@ -1,4 +1,4 @@
-# react-semicircle-progressbar-with-indicator
+# react-progressbars-with-indicator
 
 A semicircle progress bar with an indicator for React applications.
 Originally forked from [react-semicircle-progressbar](https://github.com/4emcos/react-semicircle-progressbar)
@@ -7,10 +7,10 @@ Originally forked from [react-semicircle-progressbar](https://github.com/4emcos/
 
 ## Installation
 
-Use the package manager [npm](https://www.npmjs.com/) to install react-semicircle-progressbar-with-indicator.
+Use the package manager [npm](https://www.npmjs.com/) to install react-progressbars-with-indicator.
 
 ```bash
-npm install [insert name here]
+npm install react-progressbars-with-indicator
 ```
 
 ## Usage
@@ -19,7 +19,7 @@ npm install [insert name here]
 
 ```javascript
 import React from 'react';
-import SemiCircleProgressWithIndicator from '[insert name here]';
+import SemiCircleProgressWithIndicator from 'react-progressbars-with-indicator';
 
 function App() {
   return (
@@ -46,7 +46,7 @@ export default App;
 
 ```javascript
 import React from 'react';
-import HorizontalProgressWithIndicator from '[insert name here]';
+import HorizontalProgressWithIndicator from 'react-progressbars-with-indicator';
 
 function App() {
   return (
@@ -73,7 +73,7 @@ export default App;
 
 ```javascript
 import React from 'react';
-import SemiCircleProgressWithIndicator from '[insert name here]';
+import SemiCircleProgressWithIndicator from 'react-progressbars-with-indicator';
 
 function App() {
   return (
