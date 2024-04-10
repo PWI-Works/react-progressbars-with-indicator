@@ -112,6 +112,23 @@ export const HorizontalProgressWithIndicator = ({
       />
 
       {showIndicator && placedIndicator}
+
+      {customText && (
+        <text
+          x={progressStrokeEndX}
+          y={strokeWidth/2 + strokeWidth * 0.08}
+          textAnchor="end"
+          dominantBaseline="middle"
+          fill="white"
+          fontFamily='Arial'
+          fontSize={strokeWidth}
+          style={{
+            ...fontStyle,
+          }}
+        >
+          {customText}
+        </text>
+      )}
     </svg>
   );
 }
