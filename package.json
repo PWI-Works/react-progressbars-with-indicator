@@ -7,7 +7,7 @@
     "url": "https://github.com/PWI-Works/react-progressbars-with-indicator.git"
   },
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "types": "dist/index.d.ts",
   "files": [
@@ -18,10 +18,10 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "build": "vite build"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -63,7 +63,9 @@
     "semicircle",
     "half progressbar",
     "half circle",
-    "semi circle progressbar"
+    "semi circle progressbar",
+    "indicator",
+    "horizontal progressbar"
   ],
   "bugs": {
     "url": "https://github.com/PWI-Works/react-progressbars-with-indicator/issues"
