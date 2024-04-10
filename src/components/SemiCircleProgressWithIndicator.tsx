@@ -25,8 +25,8 @@ export const SemiCircleProgressWithIndicator = ({
                                                   strokeWidth,
                                                   percentage,
                                                   indicatorPercentage,
-                                                  strokeColor,
-                                                  indicatorColor,
+                                                  strokeColor = "#04001b",
+                                                  indicatorColor = "#04001b",
                                                   width = 100,
                                                   indicatorRelativeSize,
                                                   strokeLinecap,
@@ -34,10 +34,8 @@ export const SemiCircleProgressWithIndicator = ({
                                                   includeText = false,
                                                   fontStyle,
                                                   hasBackground = true,
-                                                  bgStrokeColor,
+                                                  bgStrokeColor = "#d3d3d3",
                                                 }: ISemiCircleProgressWithIndicator) => {
-  const defaultStrokeColor = "#04001b";
-  const defaultBackgroundColor = "#d3d3d3";
 
   if (percentage < 0 || percentage > 100) {
     throw new Error("Percentage must be between 0 and 100");
@@ -106,7 +104,7 @@ export const SemiCircleProgressWithIndicator = ({
           d={pathDescription}
           style={{
             transition: "stroke-dashoffset 0.35s",
-            stroke: bgStrokeColor || defaultBackgroundColor,
+            stroke: bgStrokeColor,
             strokeLinecap: strokeLinecap || "round",
             strokeDasharray: `${circumference}`,
             strokeDashoffset: `${bgStrokeDashoffset}`,
@@ -119,7 +117,7 @@ export const SemiCircleProgressWithIndicator = ({
         d={pathDescription}
         style={{
           transition: "stroke-dashoffset 0.35s",
-          stroke: strokeColor || defaultStrokeColor,
+          stroke: strokeColor,
           strokeLinecap: strokeLinecap || "round",
           strokeDasharray: `${circumference}`,
           strokeDashoffset: `${strokeDashoffset}`,
