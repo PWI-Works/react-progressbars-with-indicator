@@ -1,13 +1,13 @@
 {
-  "name": "react-semicircle-progressbar",
-  "description": "React component for semicircle progressbar",
-  "author": "4emcos",
+  "name": "react-progressbars-with-indicator",
+  "description": "Progressbars with indicator for React",
+  "author": "pwi-jeff",
   "repository": {
     "type": "git",
-    "url": "https://github.com/4emcos/react-semicircle-progressbar"
+    "url": "git+https://github.com/4emcos/react-semicircle-progressbar.git"
   },
   "private": false,
-  "version": "1.0.5",
+  "version": "1.0.0",
   "type": "module",
   "types": "dist/index.d.ts",
   "files": [
@@ -64,5 +64,8 @@
     "half progressbar",
     "half circle",
     "semi circle progressbar"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/4emcos/react-semicircle-progressbar/issues"
+  }
 }
