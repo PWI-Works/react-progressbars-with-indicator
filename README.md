@@ -42,6 +42,33 @@ function App() {
 export default App;
 ```
 
+### HorizontalProgressWithIndicator
+
+```javascript
+import React from 'react';
+import HorizontalProgressWithIndicator from '[insert name here]';
+
+function App() {
+  return (
+      <div>
+        <HorizontalProgressWithIndicator
+            percentage={80}
+            indicatorPercentage={50}
+            size={{
+              width: 300,
+              height: 200,
+            }}
+            strokeWidth={10}
+            strokeColor="#f00"
+            indicatorColor="#f00"
+        />
+      </div>
+  );
+}
+
+export default App;
+```
+
 ### Indicator
 
 ```javascript
@@ -84,6 +111,24 @@ export default App;
 | hasBackground         | boolean                                                                    | The background of the progress bar                                                |
 | bgStrokeColor         | string                                                                     | The color of the progress bar background line in CSS                              |
 
+### HorizontalProgressWithIndicator
+
+| Property              | Type                                                     | Description                                                                       |
+|-----------------------|----------------------------------------------------------|-----------------------------------------------------------------------------------|
+| strokeWidth           | number                                                   | The width of the progress bar line in pixels                                      |
+| strokeLinecap         | "butt" &#124; "round" &#124; "square"                    | The type of end cap for the progress bar line ("butt", "round", or "square")      |
+| percentage            | number                                                   | The percentage of the progress bar filled                                         |
+| indicatorPercentage   | number                                                   | The position of the indicator along the progress bar (null value hides indicator) |
+| width                 | number                                                   | The width of the progress bar in pixels                                           |
+| strokeColor           | string                                                   | The color of the progress bar line in hex                                         |
+| indicatorColor        | string                                                   | The color of the indicator in hex                                                 |
+| indicatorRelativeSize | number                                                   | The size of the indicator relative to the stroke width of the progress bar line   |
+| customText            | string                                                   | Custom text that is displayed inside the progress bar                             |
+| textPosition          | 'start' &#124; 'end' &#124; 'middle'                     | The position of the custom text inside the progress bar                           |
+| fontStyle             | { fontFamily: string, fontWeight: string, fill: string } | The style of the label text                                                       |
+| hasBackground         | boolean                                                  | The background of the progress bar                                                |
+| bgStrokeColor         | string                                                   | The color of the progress bar background line in CSS                              |
+
 ### Indicator
 
 | Property     | Type                               | Description                                                                                                                                              |
@@ -93,10 +138,10 @@ export default App;
 | style        | "equilateral" &#124; "fill-square" | The style of the indicator - equilateral produces an equilateral triangle; fill-square produces an isosceles triangle where the height matches the width |
 | cornerRadius | number                             | The corner radius of the indicator                                                                                                                       |
 
-
 ## Testing (development only)
 
-This project has [Storybook](https://storybook.js.org/) installed for testing purposes. To run the storybook, use the following command:
+This project has [Storybook](https://storybook.js.org/) installed for testing purposes. To run the storybook, use the
+following command:
 
 ```bash
 npm run storybook
