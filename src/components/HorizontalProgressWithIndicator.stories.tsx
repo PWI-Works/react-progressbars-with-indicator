@@ -20,4 +20,5 @@ Primary.args = {
   indicatorRelativeSize: 0.6,
   hasBackground: true,
   bgStrokeColor: '#d3d3d3',
+  textPosition: 'end',
 };

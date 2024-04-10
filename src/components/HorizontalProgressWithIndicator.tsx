@@ -10,6 +10,7 @@ export type IHorizontalProgressWithIndicator = {
   indicatorColor?: string;
   indicatorRelativeSize: number;
   customText?: string;
+  textPosition?: 'start' | 'end' | 'middle';
   fontStyle?: {
     fontFamily?: string;
     fontWeight: string;
@@ -31,7 +32,8 @@ export const HorizontalProgressWithIndicator = ({
                                                   customText,
                                                   fontStyle,
                                                   hasBackground = true,
-                                                  bgStrokeColor
+                                                  bgStrokeColor,
+                                                  textPosition = 'end'
                                                 }: IHorizontalProgressWithIndicator) => {
 
   if (isNaN(width) || width <= 0) {
@@ -115,9 +117,9 @@ export const HorizontalProgressWithIndicator = ({
 
       {customText && (
         <text
-          x={progressStrokeEndX}
-          y={strokeWidth/2 + strokeWidth * 0.08}
-          textAnchor="end"
+          x={textPosition === 'start' ? strokeStartX : textPosition === 'end' ? strokeEndX : width/2}
+          y={strokeWidth / 2 + strokeWidth * 0.08}
+          textAnchor={textPosition}
           dominantBaseline="middle"
           fill="white"
           fontFamily='Arial'
