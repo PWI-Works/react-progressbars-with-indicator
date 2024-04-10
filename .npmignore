@@ -13,8 +13,10 @@ lerna-debug.log*
 .vscode/*
 package-lock.json
 .idea/*
+.run/*
 
-*storybook.log
+.github/*
 
 .storybook/*
 *.stories.*
+*storybook.log
