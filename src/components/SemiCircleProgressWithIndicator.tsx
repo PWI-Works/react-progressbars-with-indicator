@@ -36,7 +36,7 @@ export const SemiCircleProgressWithIndicator = ({
                                                   percentageSeparator,
                                                   includeText = false,
                                                   fontStyle,
-                                                  hasBackground = false,
+                                                  hasBackground = true,
                                                   bgStrokeColor,
                                                 }: ISemiCircleProgressWithIndicator) => {
   const defaultStrokeColor = "#04001b";
@@ -76,14 +76,13 @@ export const SemiCircleProgressWithIndicator = ({
 
   // Calculate the position of the indicator
   const indicatorWidth = strokeWidth * (indicatorRelativeSize || 0.6);
-  const indicatorCornerRadius = .8;
   const indicatorStyle = 'equilateral';
   const strokeIndicatorGap = 1;
   const translateX = pathDiameter/2 + strokeWidth/2 + strokeIndicatorGap;
   const indicatorRotationAngle = (indicatorPercentage || 0) / 100 * 180;
 
 
-  const indicator = (<Indicator width={indicatorWidth} color={indicatorColor} style={indicatorStyle} cornerRadius={indicatorCornerRadius}/>);
+  const indicator = (<Indicator width={indicatorWidth} color={indicatorColor} style={indicatorStyle}/>);
   // Wrap the Indicator component in a g and apply the transform attribute
   const placedIndicator = (
     <g
