@@ -6,10 +6,7 @@ export type ISemiCircleProgressWithIndicator = {
   percentage: number;
   indicatorPercentage?: number;
   percentageSeparator?: string;
-  size: {
-    width: number;
-    height: number;
-  };
+  width?: number;
   strokeColor?: string;
   indicatorColor?: string;
   indicatorRelativeSize: number;
@@ -28,19 +25,17 @@ export const SemiCircleProgressWithIndicator = ({
                                                   strokeWidth,
                                                   percentage,
                                                   indicatorPercentage,
-                                                  strokeColor,
-                                                  indicatorColor,
-                                                  size,
+                                                  strokeColor = "#04001b",
+                                                  indicatorColor = "#04001b",
+                                                  width = 100,
                                                   indicatorRelativeSize,
                                                   strokeLinecap,
                                                   percentageSeparator,
                                                   includeText = false,
                                                   fontStyle,
                                                   hasBackground = true,
-                                                  bgStrokeColor,
+                                                  bgStrokeColor = "#d3d3d3",
                                                 }: ISemiCircleProgressWithIndicator) => {
-  const defaultStrokeColor = "#04001b";
-  const defaultBackgroundColor = "#d3d3d3";
 
   if (percentage < 0 || percentage > 100) {
     throw new Error("Percentage must be between 0 and 100");
@@ -55,30 +50,30 @@ export const SemiCircleProgressWithIndicator = ({
   }
 
   if (
-    isNaN(size.width) ||
-    size.width <= 0 ||
-    isNaN(size.height) ||
-    size.height <= 0
-  ) {
+    isNaN(width) ||  width <= 0 ){
     throw new Error("Size must be a positive number");
   }
 
-  const radius = 50 - strokeWidth / 2;
+  const indicatorWidth = strokeWidth * (indicatorRelativeSize || 0.6);
+  const strokeIndicatorGap = strokeWidth * 0.1;
+  const showIndicator = indicatorPercentage !== undefined;
+
+  const indicatorOffset = showIndicator ? indicatorWidth + strokeIndicatorGap : 0;
+  const pathDiameter = width - strokeWidth - indicatorOffset * 2;
+  const radius = pathDiameter / 2;
   const circumference = 1.1 * Math.PI * radius;
   const strokeDashoffset = circumference - (percentage / 100) * circumference;
   const bgStrokeDashoffset = 0;
-  const pathStartX = 5;
-  const pathStartY = 64;
-  const pathDiameter = 90;
+  const pathStartX = strokeWidth / 2 + indicatorOffset;
+  const pathBottomY = radius + strokeWidth / 2 + indicatorOffset;
   const pathCenterX = pathStartX + pathDiameter / 2;
-  const pathDescription = `M${pathStartX},${pathStartY} a1,1 0 0,1 ${pathDiameter},0`;
+  const pathDescription = `M${pathStartX},${pathBottomY} a1,1 0 0,1 ${pathDiameter},0`;
 
 
   // Calculate the position of the indicator
-  const indicatorWidth = strokeWidth * (indicatorRelativeSize || 0.6);
+
   const indicatorStyle = 'equilateral';
-  const strokeIndicatorGap = 1;
-  const translateX = pathDiameter/2 + strokeWidth/2 + strokeIndicatorGap;
+  const indicatorTranslateX = pathDiameter/2 + strokeWidth/2 + strokeIndicatorGap;
   const indicatorRotationAngle = (indicatorPercentage || 0) / 100 * 180;
 
 
@@ -86,18 +81,20 @@ export const SemiCircleProgressWithIndicator = ({
   // Wrap the Indicator component in a g and apply the transform attribute
   const placedIndicator = (
     <g
-      transform={`rotate(${indicatorRotationAngle}, ${pathCenterX}, ${pathStartY}) translate(-${translateX})`}> {/*rotate the indicator and move outside the arc*/}
-      <g transform={`translate(${pathCenterX}, ${pathStartY - indicatorWidth/2}) rotate(90)`}> {/*set start position of indicator to point at dead center*/}
+      transform={`rotate(${indicatorRotationAngle}, ${pathCenterX}, ${pathBottomY}) translate(-${indicatorTranslateX})`}> {/*rotate the indicator and move outside the arc*/}
+      <g transform={`translate(${pathCenterX}, ${pathBottomY - indicatorWidth/2}) rotate(90)`}> {/*set start position of indicator to point at dead center*/}
         {indicator}
       </g>
     </g>
   );
 
+  const height = pathBottomY + ((strokeLinecap === "round" || strokeLinecap === "square") ? strokeWidth / 2 : indicatorWidth / 2);
+
   return (
     <svg
-      width={size.width}
-      height={size.height}
-      viewBox="0 0 100 100"
+      width={width}
+      height={height}
+      viewBox={`0 0 ${width} ${height}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="_half-circular-progress"
@@ -107,7 +104,7 @@ export const SemiCircleProgressWithIndicator = ({
           d={pathDescription}
           style={{
             transition: "stroke-dashoffset 0.35s",
-            stroke: bgStrokeColor || defaultBackgroundColor,
+            stroke: bgStrokeColor,
             strokeLinecap: strokeLinecap || "round",
             strokeDasharray: `${circumference}`,
             strokeDashoffset: `${bgStrokeDashoffset}`,
@@ -120,7 +117,7 @@ export const SemiCircleProgressWithIndicator = ({
         d={pathDescription}
         style={{
           transition: "stroke-dashoffset 0.35s",
-          stroke: strokeColor || defaultStrokeColor,
+          stroke: strokeColor,
           strokeLinecap: strokeLinecap || "round",
           strokeDasharray: `${circumference}`,
           strokeDashoffset: `${strokeDashoffset}`,
@@ -129,7 +126,7 @@ export const SemiCircleProgressWithIndicator = ({
         fill="none"
       />
 
-      {indicatorPercentage !== undefined && placedIndicator}
+      {showIndicator && placedIndicator}
 
       <animate
         attributeName="stroke-dashoffset"
@@ -140,11 +137,10 @@ export const SemiCircleProgressWithIndicator = ({
       />
 
       {includeText && <text
-          x="52%"
-          y="60%"
-          dominantBaseline="middle"
+          x="50%"
+          y="98%"
           textAnchor="middle"
-          fontSize="20"
+          fontSize="90"
           fontFamily="Arial"
           fill="#04001b"
           style={{

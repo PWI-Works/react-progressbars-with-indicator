@@ -5,7 +5,7 @@ export type IIndicator = {
   cornerRadius?: number,
 }
 
-export const Indicator = ({width, color, style, cornerRadius}: IIndicator) => {
+export const Indicator = ({width, color = "#04001b", style, cornerRadius}: IIndicator) => {
 
   if (isNaN(width) || width <= 0) {
     throw new Error("Width must be a positive number");
@@ -14,7 +14,6 @@ export const Indicator = ({width, color, style, cornerRadius}: IIndicator) => {
     throw new Error("Corner radius must be a positive number and less than one third the width");
   }
 
-  const defaultColor = "#04001b";
   const strokeWidth = cornerRadius ? cornerRadius * 2 : width/3;
   //defaults to fill-square if equilateral is not specified
   const triangleHeight = style == 'fill-square' ? width-strokeWidth : Math.tan(60 * Math.PI / 180) * ((width - strokeWidth) / 2);
@@ -33,8 +32,8 @@ export const Indicator = ({width, color, style, cornerRadius}: IIndicator) => {
     >
       <path
         d={indicatorPathDescription}
-        fill={color || defaultColor}
-        stroke={color || defaultColor}
+        fill={color}
+        stroke={color}
         strokeWidth={strokeWidth}
         strokeLinejoin="round"
       />
