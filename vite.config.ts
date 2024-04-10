@@ -30,6 +30,15 @@ export default defineConfig({
     rollupOptions: {
       external: [],
       plugins: [
+        {
+          name: 'ignore-stories',
+          resolveId(source) {
+            if (source.includes('.stories.')) {
+              return false;
+            }
+            return null;
+          }
+        },
         typescriptPaths({
           preserveExtensions: true,
         }),
