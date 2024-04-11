@@ -62,8 +62,10 @@ export const HorizontalProgressWithIndicator = ({
   const strokeStartX = (strokeLinecap === "round" || strokeLinecap === "square") ? strokeWidth / 2 : indicatorStrokeOffset;
   const strokeEndX = width - (strokeLinecap === "round" || strokeLinecap === "square" ? strokeWidth : indicatorStrokeOffset);
   const strokeLength = strokeEndX - strokeStartX;
-  const progressStrokeEndX = strokeStartX + strokeLength * (percentage / 100);
+  const progressStrokeLength = strokeLength * (percentage / 100);
+  const progressStrokeEndX = strokeStartX + progressStrokeLength;
   const indicatorPositionX = strokeStartX + strokeLength * ((indicatorPercentage || 0) / 100);
+  const progressStrokeDashOffset = strokeLength - progressStrokeLength;
 
 
   const strokeIndicatorGap = strokeWidth * 0.1;
@@ -73,6 +75,9 @@ export const HorizontalProgressWithIndicator = ({
 
   const placedIndicator = (
     <g
+      style={{
+        transition: 'transform 0.35s',
+      }}
       transform={`translate(${indicatorPositionX - indicatorWidth / 2}, ${indicatorPositionY})`}> {/*set start position of indicator to point at dead center*/}
       {indicator}
     </g>
@@ -109,6 +114,9 @@ export const HorizontalProgressWithIndicator = ({
           stroke: strokeColor || defaultStrokeColor,
           strokeLinecap: strokeLinecap,
           strokeWidth: strokeWidth,
+          strokeDasharray: `${strokeLength}`,
+          strokeDashoffset: `${progressStrokeDashOffset}`,
+          transition: 'stroke-dashoffset 0.35s',
         }}
         fill="none"
       />

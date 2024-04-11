@@ -29,7 +29,7 @@ export const SemiCircleProgressWithIndicator = ({
                                                   indicatorColor = "#04001b",
                                                   width = 100,
                                                   indicatorRelativeSize,
-                                                  strokeLinecap,
+                                                  strokeLinecap = "round",
                                                   percentageSeparator,
                                                   includeText = false,
                                                   fontStyle,
@@ -81,6 +81,9 @@ export const SemiCircleProgressWithIndicator = ({
   // Wrap the Indicator component in a g and apply the transform attribute
   const placedIndicator = (
     <g
+      style={{
+        transition: "transform 0.35s",
+      }}
       transform={`rotate(${indicatorRotationAngle}, ${pathCenterX}, ${pathBottomY}) translate(-${indicatorTranslateX})`}> {/*rotate the indicator and move outside the arc*/}
       <g transform={`translate(${pathCenterX}, ${pathBottomY - indicatorWidth/2}) rotate(90)`}> {/*set start position of indicator to point at dead center*/}
         {indicator}
@@ -105,7 +108,7 @@ export const SemiCircleProgressWithIndicator = ({
           style={{
             transition: "stroke-dashoffset 0.35s",
             stroke: bgStrokeColor,
-            strokeLinecap: strokeLinecap || "round",
+            strokeLinecap: strokeLinecap,
             strokeDasharray: `${circumference}`,
             strokeDashoffset: `${bgStrokeDashoffset}`,
             strokeWidth: `${strokeWidth}`,
@@ -118,7 +121,7 @@ export const SemiCircleProgressWithIndicator = ({
         style={{
           transition: "stroke-dashoffset 0.35s",
           stroke: strokeColor,
-          strokeLinecap: strokeLinecap || "round",
+          strokeLinecap: strokeLinecap,
           strokeDasharray: `${circumference}`,
           strokeDashoffset: `${strokeDashoffset}`,
           strokeWidth: `${strokeWidth}`,
@@ -127,14 +130,6 @@ export const SemiCircleProgressWithIndicator = ({
       />
 
       {showIndicator && placedIndicator}
-
-      <animate
-        attributeName="stroke-dashoffset"
-        from="283"
-        to="0"
-        dur="1s"
-        fill="freeze"
-      />
 
       {includeText && <text
           x="50%"
