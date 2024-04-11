@@ -1,4 +1,4 @@
-export type IIndicator = {
+export interface IIndicator {
   width: number,
   color?: string,
   style?: 'equilateral' | 'fill-square'
