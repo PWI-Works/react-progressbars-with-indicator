@@ -63,6 +63,7 @@ export const HorizontalProgressWithIndicator = ({
   const strokeEndX = width - (strokeLinecap === "round" || strokeLinecap === "square" ? strokeWidth : indicatorStrokeOffset);
   const strokeLength = strokeEndX - strokeStartX;
   const progressStrokeEndX = strokeStartX + strokeLength * (percentage / 100);
+  const progressStrokeLength = strokeLength * (percentage / 100);
   const indicatorPositionX = strokeStartX + strokeLength * ((indicatorPercentage || 0) / 100);
 
 
