@@ -56,7 +56,7 @@ export const HorizontalProgressWithIndicator = ({
 
   const indicatorStrokeOffset = showIndicator ? indicatorWidth / 2 : 0;
   const strokeStartX = (strokeLinecap === "round" || strokeLinecap === "square") ? strokeWidth / 2 : indicatorStrokeOffset;
-  const strokeEndX = baseWidth - (strokeLinecap === "round" || strokeLinecap === "square" ? strokeWidth : indicatorStrokeOffset);
+  const strokeEndX = baseWidth - (strokeLinecap === "round" || strokeLinecap === "square" ? strokeWidth / 2 : indicatorStrokeOffset);
   const strokeLength = strokeEndX - strokeStartX;
   const progressStrokeLength = strokeLength * (percentage / 100);
   const progressStrokeEndX = strokeStartX + progressStrokeLength;
@@ -82,7 +82,7 @@ export const HorizontalProgressWithIndicator = ({
   const backgroundPathDescription = `M ${strokeStartX} ${strokeWidth / 2} L ${strokeEndX} ${strokeWidth / 2}`;
   const progressPathDescription = `M ${strokeStartX} ${strokeWidth / 2} L ${progressStrokeEndX} ${strokeWidth / 2}`;
 
-  const height = strokeWidth + indicatorWidth + strokeIndicatorGap;
+  const height = strokeWidth + (showIndicator? indicatorWidth + strokeIndicatorGap : 0);
 
   return (
     <svg
