@@ -76,7 +76,7 @@ export default App;
 | percentage            | number                                                                     | The percentage of the progress bar filled                                         |
 | indicatorPercentage   | number                                                                     | The position of the indicator along the progress bar (null value hides indicator) |
 | percentageSeparator   | string                                                                     | The separator to use between the percentage and label text (default is "of")      |
-| width                 | number                                                                     | The width of the progressbar in pixels. Height is determined automatically.       |
+| width                 | number                                                                     | The width of the progressbar in pixels                                            |
 | strokeColor           | string                                                                     | The color of the progress bar line in hex                                         |
 | indicatorColor        | string                                                                     | The color of the indicator in hex                                                 |
 | indicatorRelativeSize | number                                                                     | The size of the indicator relative to the stroke width of the progress bar line   |
