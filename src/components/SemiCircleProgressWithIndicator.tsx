@@ -8,7 +8,7 @@ export interface ISemiCircleProgressWithIndicator {
   percentageSeparator?: string;
   strokeColor?: string;
   indicatorColor?: string;
-  indicatorRelativeSize: number;
+  indicatorRelativeSize?: number;
   includeText?: boolean;
   fontStyle?: {
     fontSize: string;
@@ -26,7 +26,7 @@ export const SemiCircleProgressWithIndicator = ({
                                                   indicatorPercentage,
                                                   strokeColor = "#04001b",
                                                   indicatorColor = "#04001b",
-                                                  indicatorRelativeSize,
+                                                  indicatorRelativeSize = 0.6,
                                                   strokeLinecap = "round",
                                                   percentageSeparator,
                                                   includeText = false,

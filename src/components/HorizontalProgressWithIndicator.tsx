@@ -7,7 +7,7 @@ export interface IHorizontalProgressWithIndicator {
   indicatorPercentage?: number;
   strokeColor?: string;
   indicatorColor?: string;
-  indicatorRelativeSize: number;
+  indicatorRelativeSize?: number;
   customText?: string;
   textPosition?: 'start' | 'end' | 'middle';
   fontStyle?: {
@@ -26,7 +26,7 @@ export const HorizontalProgressWithIndicator = ({
                                                   indicatorPercentage,
                                                   strokeColor,
                                                   indicatorColor,
-                                                  indicatorRelativeSize,
+                                                  indicatorRelativeSize = 0.6,
                                                   customText,
                                                   fontStyle,
                                                   hasBackground = true,
