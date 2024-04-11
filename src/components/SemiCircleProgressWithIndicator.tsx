@@ -6,7 +6,6 @@ export interface ISemiCircleProgressWithIndicator {
   percentage: number;
   indicatorPercentage?: number;
   percentageSeparator?: string;
-  width?: number;
   strokeColor?: string;
   indicatorColor?: string;
   indicatorRelativeSize: number;
@@ -27,7 +26,6 @@ export const SemiCircleProgressWithIndicator = ({
                                                   indicatorPercentage,
                                                   strokeColor = "#04001b",
                                                   indicatorColor = "#04001b",
-                                                  width = 100,
                                                   indicatorRelativeSize,
                                                   strokeLinecap = "round",
                                                   percentageSeparator,
@@ -49,10 +47,7 @@ export const SemiCircleProgressWithIndicator = ({
     throw new Error("Stroke width must be a positive number");
   }
 
-  if (
-    isNaN(width) ||  width <= 0 ){
-    throw new Error("Size must be a positive number");
-  }
+  const width = 100;
 
   const indicatorWidth = strokeWidth * (indicatorRelativeSize || 0.6);
   const strokeIndicatorGap = strokeWidth * 0.1;
@@ -95,8 +90,8 @@ export const SemiCircleProgressWithIndicator = ({
 
   return (
     <svg
-      width={width}
-      height={height}
+      width="100%"
+      height="auto"
       viewBox={`0 0 ${width} ${height}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

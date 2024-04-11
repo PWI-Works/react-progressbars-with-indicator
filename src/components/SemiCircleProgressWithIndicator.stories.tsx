@@ -6,15 +6,15 @@ export default {
   component: SemiCircleProgressWithIndicator,
 } as Meta;
 
-const Template: StoryFn<ISemiCircleProgressWithIndicator> = (args: ISemiCircleProgressWithIndicator) => <SemiCircleProgressWithIndicator {...args} />;
+const Template: StoryFn<ISemiCircleProgressWithIndicator> = (args: ISemiCircleProgressWithIndicator) => <div style={{width: "600px"}}>
+  <SemiCircleProgressWithIndicator {...args} /></div>;
 
-export const Primary = Template.bind({});
+  export const Primary = Template.bind({});
 
 Primary.args = {
   strokeWidth: 10,
   percentage: 60,
   indicatorPercentage: undefined,
-  width: 650,
   includeText: false,
   strokeColor: "#04001b",
   indicatorColor: "#03C04A",

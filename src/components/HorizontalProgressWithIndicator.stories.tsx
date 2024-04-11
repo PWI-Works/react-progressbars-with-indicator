@@ -6,7 +6,7 @@ export default {
   component: HorizontalProgressWithIndicator,
 } as Meta;
 
-const Template: StoryFn<IHorizontalProgressWithIndicator> = (args: IHorizontalProgressWithIndicator) => <HorizontalProgressWithIndicator {...args} />;
+const Template: StoryFn<IHorizontalProgressWithIndicator> = (args: IHorizontalProgressWithIndicator) => <div style={{width: "600px"}}><HorizontalProgressWithIndicator {...args} /></div>;
 
 export const Primary = Template.bind({});
 
@@ -14,7 +14,6 @@ Primary.args = {
   strokeWidth: 10,
   percentage: 60,
   indicatorPercentage: undefined,
-  width: 500,
   strokeColor: "#04001b",
   indicatorColor: "#03C04A",
   indicatorRelativeSize: 0.6,
