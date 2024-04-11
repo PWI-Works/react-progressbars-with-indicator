@@ -1,11 +1,10 @@
 import {Indicator} from "~/components/Indicator";
 
-export type IHorizontalProgressWithIndicator = {
+export interface IHorizontalProgressWithIndicator {
   strokeWidth: number;
   strokeLinecap?: "butt" | "round" | "square" | "inherit";
   percentage: number;
   indicatorPercentage?: number;
-  width?: number;
   strokeColor?: string;
   indicatorColor?: string;
   indicatorRelativeSize: number;
@@ -18,14 +17,13 @@ export type IHorizontalProgressWithIndicator = {
   };
   hasBackground?: boolean;
   bgStrokeColor?: string;
-};
+}
 
 export const HorizontalProgressWithIndicator = ({
                                                   strokeWidth,
                                                   strokeLinecap = 'round',
                                                   percentage,
                                                   indicatorPercentage,
-                                                  width = 100,
                                                   strokeColor,
                                                   indicatorColor,
                                                   indicatorRelativeSize,
@@ -36,9 +34,7 @@ export const HorizontalProgressWithIndicator = ({
                                                   textPosition = 'end'
                                                 }: IHorizontalProgressWithIndicator) => {
 
-  if (isNaN(width) || width <= 0) {
-    throw new Error("width must be a positive number");
-  }
+  const width= 100;
 
   if (isNaN(strokeWidth) || strokeWidth <= 0) {
     throw new Error("Stroke width must be a positive number");
@@ -90,8 +86,8 @@ export const HorizontalProgressWithIndicator = ({
 
   return (
     <svg
-      width={width}
-      height={height}
+      width="100%"
+      height="auto"
       viewBox={`0 0 ${width} ${height}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

@@ -1,6 +1,6 @@
 import {Indicator} from "~/components/Indicator";
 
-export type ISemiCircleProgressWithIndicator = {
+export interface ISemiCircleProgressWithIndicator {
   strokeWidth: number;
   strokeLinecap?: "butt" | "round" | "square" | "inherit";
   percentage: number;
