@@ -34,12 +34,12 @@ export const HorizontalProgressWithIndicator = ({
                                                   textPosition = 'end'
                                                 }: IHorizontalProgressWithIndicator) => {
 
-  const width= 100;
+  const baseWidth= 100;
 
   if (isNaN(strokeWidth) || strokeWidth <= 0) {
     throw new Error("Stroke width must be a positive number");
   }
-
+  
   if (percentage < 0 || percentage > 100) {
     throw new Error("Indicator percentage must be between 0 and 100");
   }
@@ -56,7 +56,7 @@ export const HorizontalProgressWithIndicator = ({
 
   const indicatorStrokeOffset = showIndicator ? indicatorWidth / 2 : 0;
   const strokeStartX = (strokeLinecap === "round" || strokeLinecap === "square") ? strokeWidth / 2 : indicatorStrokeOffset;
-  const strokeEndX = width - (strokeLinecap === "round" || strokeLinecap === "square" ? strokeWidth : indicatorStrokeOffset);
+  const strokeEndX = baseWidth - (strokeLinecap === "round" || strokeLinecap === "square" ? strokeWidth : indicatorStrokeOffset);
   const strokeLength = strokeEndX - strokeStartX;
   const progressStrokeLength = strokeLength * (percentage / 100);
   const progressStrokeEndX = strokeStartX + progressStrokeLength;
@@ -88,7 +88,7 @@ export const HorizontalProgressWithIndicator = ({
     <svg
       width="100%"
       height="100%"
-      viewBox={`0 0 ${width} ${height}`}
+      viewBox={`0 0 ${baseWidth} ${height}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid meet"
@@ -122,7 +122,7 @@ export const HorizontalProgressWithIndicator = ({
 
       {customText && (
         <text
-          x={textPosition === 'start' ? strokeStartX : textPosition === 'end' ? strokeEndX : width/2}
+          x={textPosition === 'start' ? strokeStartX : textPosition === 'end' ? strokeEndX : baseWidth/2}
           y={strokeWidth / 2 + strokeWidth * 0.08}
           textAnchor={textPosition}
           dominantBaseline="middle"
