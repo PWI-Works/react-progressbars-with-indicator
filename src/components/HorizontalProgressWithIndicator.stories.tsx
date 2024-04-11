@@ -6,7 +6,7 @@ export default {
   component: HorizontalProgressWithIndicator,
 } as Meta;
 
-const Template: StoryFn<IHorizontalProgressWithIndicator> = (args: IHorizontalProgressWithIndicator) => <div style={{width: "600px"}}><HorizontalProgressWithIndicator {...args} /></div>;
+const Template: StoryFn<IHorizontalProgressWithIndicator> = (args: IHorizontalProgressWithIndicator) => <div style={{width: "600px", height: "auto"}}><HorizontalProgressWithIndicator {...args} /></div>;
 
 export const Primary = Template.bind({});
 

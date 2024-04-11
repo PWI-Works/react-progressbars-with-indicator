@@ -18,7 +18,7 @@ export interface ISemiCircleProgressWithIndicator {
   };
   hasBackground?: boolean;
   bgStrokeColor?: string;
-};
+}
 
 export const SemiCircleProgressWithIndicator = ({
                                                   strokeWidth,
@@ -91,10 +91,11 @@ export const SemiCircleProgressWithIndicator = ({
   return (
     <svg
       width="100%"
-      height="auto"
+      height="100%"
       viewBox={`0 0 ${width} ${height}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid meet"
       className="_half-circular-progress"
     >
       {hasBackground && (
