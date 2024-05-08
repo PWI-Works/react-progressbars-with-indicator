@@ -57,7 +57,7 @@ export const SemiCircleProgressWithIndicator = ({
   const indicatorOffset = showIndicator ? indicatorWidth + strokeIndicatorGap : 0;
   const pathDiameter = baseWidth - strokeWidth - indicatorOffset * 2;
   const radius = pathDiameter / 2;
-  const circumference = 1.1 * Math.PI * radius;
+  const circumference =  Math.PI * radius;
   const strokeDashoffset = circumference - (percentage / 100) * circumference - (percentage === 0 ? .00002 : 0);
   const bgStrokeDashoffset = 0;
   const pathStartX = strokeWidth / 2 + indicatorOffset;
